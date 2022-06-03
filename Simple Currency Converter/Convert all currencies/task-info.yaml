@@ -1,0 +1,29 @@
+type: remote_edu
+files:
+- name: main.js
+  visible: true
+  text: "const input = require('sync-input');\n\nconst currencies = {\n  USD: 1.0,\n\
+    \  JPY: 113.5,\n  EUR: 0.89,\n  RUB: 74.36,\n  GBP: 0.75,\n};\n\nconst currencyName\
+    \ = Object.keys(currencies);\nconst currencyValue = Object.values(currencies);\n\
+    \nconst printCurrencies = (name, value) => {\n  console.log('Welcome to Currency\
+    \ Converter!');\n  let currencies = [];\n  for (let i = 0; i < 5; i++) {\n   \
+    \ currencies.push(`${value[i]} ${name[i]}`);\n  }\n  currencies.forEach((currency)\
+    \ => {\n    console.log(`1 USD equals  ${currency}`);\n  });\n};\n\nprintCurrencies(currencyName,\
+    \ currencyValue);\n\nconsole.log('I can convert USD to these currencies: JPY,\
+    \ EUR, RUB, USD, GBP');\nconsole.log('Type the currency you wish to convert: USD');\n\
+    \nfunction convertCurrency() {\n  const convertTo = input(`To: `);\n  \n  const\
+    \ inputCurrency = convertTo.toUpperCase();\n  if (!currencies.hasOwnProperty(inputCurrency))\
+    \ {\n    return console.log('Unknown currency');\n  }\n  \n  const amount = input(`Amount:\
+    \ `);\n\n  const userAmount = Number(amount);\n  if (userAmount < 1) {\n    return\
+    \ console.log('The amount can not be less than 1.');\n  }\n  if (isNaN(userAmount))\
+    \ {\n    return console.log('The amount has to be a number');\n  }\n\n  const\
+    \ result = (userAmount * currencies[inputCurrency]).toFixed(4);\n\n  return console.log(`Result:\
+    \ ${userAmount} USD equals ${result} ${inputCurrency}`);\n}\n\nconvertCurrency();\n"
+  learner_created: false
+- name: tests.py
+  visible: false
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/231/stages/1159/implement#comment
+check_profile: hyperskill_node_javascript
+status: Solved
+record: 2

@@ -1,0 +1,75 @@
+type: remote_edu
+custom_name: Loop it!
+files:
+- name: main.js
+  visible: true
+  text: |
+    const input = require('sync-input');
+
+    const currencies = {
+      USD: 1.0,
+      JPY: 113.5,
+      EUR: 0.89,
+      RUB: 74.36,
+      GBP: 0.75,
+    };
+
+    const currencyName = Object.keys(currencies);
+    const currencyValue = Object.values(currencies);
+
+    const printCurrencies = (name, value) => {
+      console.log('Welcome to Currency Converter!');
+      let currencies = [];
+      for (let i = 0; i < 5; i++) {
+        currencies.push(`${value[i]} ${name[i]}`);
+      }
+      currencies.forEach((currency) => {
+        console.log(`1 USD equals  ${currency}`);
+      });
+    };
+
+    printCurrencies(currencyName, currencyValue);
+
+    function convertCurrency() {
+      console.log('What do you want to convert?');
+
+      const convertFrom = input(`From: `)
+      const inputCurrency = convertFrom.toUpperCase();
+      if (!currencies.hasOwnProperty(inputCurrency)) {
+        return console.log('Unknown currency');
+      }
+
+      const convertTo = input(`To: `);
+      const targetCurrency = convertTo.toUpperCase();
+      if (!currencies.hasOwnProperty(targetCurrency)) {
+        return console.log('Unknown currency');
+      }
+
+      const amount = input(`Amount: `);
+      const userAmount = Number(amount);
+      if (userAmount < 1) {
+        return console.log('The amount can not be less than 1.');
+      }
+      if (isNaN(userAmount)) {
+        return console.log('The amount has to be a number');
+      }
+
+      const result = (
+        (userAmount / currencies[inputCurrency]) *
+        currencies[targetCurrency]
+      ).toFixed(4);
+
+      return console.log(
+        `Result: ${userAmount} ${inputCurrency} equals ${result} ${targetCurrency}`
+      );
+    }
+
+    convertCurrency();
+  learner_created: false
+- name: tests.py
+  visible: false
+  learner_created: false
+feedback_link: https://hyperskill.org/projects/231/stages/1160/implement#comment
+check_profile: hyperskill_node_javascript
+status: Solved
+record: 3
